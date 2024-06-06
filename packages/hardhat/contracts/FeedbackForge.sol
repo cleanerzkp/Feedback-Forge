@@ -17,21 +17,25 @@ contract FeedbackForge {
     mapping(address => uint256) private ratingCount;
 
     // Event to emit when feedback is provided
-    event FeedbackProvided(address indexed user, uint8 rating, string comment, address indexed feedbackProvider, uint256 timestamp);
+    event FeedbackProvided(
+        address indexed user,
+        uint8 rating,
+        string comment,
+        address indexed feedbackProvider,
+        uint256 timestamp
+    );
 
     // Function to provide feedback
     function provideFeedback(address user, uint8 rating, string memory comment) public {
         require(user != address(0), "Invalid user address");
         require(rating >= 0 && rating <= 5, "Rating must be between 0 and 5");
 
-        Feedback memory newFeedback = Feedback({
+        feedbacks[user].push(Feedback({
             rating: rating,
             comment: comment,
             feedbackProvider: msg.sender,
             timestamp: block.timestamp
-        });
-
-        feedbacks[user].push(newFeedback);
+        }));
         ratingSum[user] += rating;
         ratingCount[user] += 1;
 
@@ -44,6 +48,25 @@ contract FeedbackForge {
         return feedbacks[user].length;
     }
 
+    // Function to get the first feedback for a user
+    function getFirstFeedback(address user) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {
+        require(user != address(0), "Invalid user address");
+        require(feedbacks[user].length > 0, "No feedback available");
+
+        Feedback memory fb = feedbacks[user][0];
+        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);
+    }
+
+    // Function to get the latest feedback for a user
+    function getLatestFeedback(address user) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {
+        require(user != address(0), "Invalid user address");
+        uint256 feedbackCount = feedbacks[user].length;
+        require(feedbackCount > 0, "No feedback available");
+
+        Feedback memory fb = feedbacks[user][feedbackCount - 1];
+        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);
+    }
+
     // Function to get feedback by index for a user
     function getFeedback(address user, uint256 index) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {
         require(user != address(0), "Invalid user address");
@@ -54,13 +77,13 @@ contract FeedbackForge {
     }
 
     // Function to get average rating for a user
-    function getAverageRating(address user) public view returns (uint8) {
+    function getAverageRating(address user) public view returns (uint256) {
         require(user != address(0), "Invalid user address");
 
         if (ratingCount[user] == 0) {
             return 0;
         }
-        return uint8(ratingSum[user] / ratingCount[user]);
+        return ratingSum[user] * 100 / ratingCount[user];
     }
 
     // Function to get all feedback for a user

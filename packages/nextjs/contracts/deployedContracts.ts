@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     FeedbackForge: {
-      address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
+      address: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
       abi: [
         {
           anonymous: false,
@@ -98,9 +98,9 @@ const deployedContracts = {
           name: "getAverageRating",
           outputs: [
             {
-              internalType: "uint8",
+              internalType: "uint256",
               name: "",
-              type: "uint8",
+              type: "uint256",
             },
           ],
           stateMutability: "view",
@@ -158,6 +158,74 @@ const deployedContracts = {
             {
               internalType: "uint256",
               name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getFirstFeedback",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "rating",
+              type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "comment",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "feedbackProvider",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getLatestFeedback",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "rating",
+              type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "comment",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "feedbackProvider",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
               type: "uint256",
             },
           ],
