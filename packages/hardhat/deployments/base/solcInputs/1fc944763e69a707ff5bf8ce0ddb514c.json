@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/FeedbackForge.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\ncontract FeedbackForge {\n    struct Feedback {\n        uint8 rating;\n        string comment;\n        address feedbackProvider;\n        uint256 timestamp;\n    }\n\n    // Mapping to store feedbacks for each user\n    mapping(address => Feedback[]) private feedbacks;\n\n    // Mapping to store aggregate ratings\n    mapping(address => uint256) private ratingSum;\n    mapping(address => uint256) private ratingCount;\n\n    // Event to emit when feedback is provided\n    event FeedbackProvided(\n        address indexed user,\n        uint8 rating,\n        string comment,\n        address indexed feedbackProvider,\n        uint256 timestamp\n    );\n\n    // Function to provide feedback\n    function provideFeedback(address user, uint8 rating, string memory comment) public {\n        require(user != address(0), \"Invalid user address\");\n        require(rating >= 0 && rating <= 5, \"Rating must be between 0 and 5\");\n\n        feedbacks[user].push(Feedback({\n            rating: rating,\n            comment: comment,\n            feedbackProvider: msg.sender,\n            timestamp: block.timestamp\n        }));\n        ratingSum[user] += rating;\n        ratingCount[user] += 1;\n\n        emit FeedbackProvided(user, rating, comment, msg.sender, block.timestamp);\n    }\n\n    // Function to get feedback count for a user\n    function getFeedbackCount(address user) public view returns (uint256) {\n        require(user != address(0), \"Invalid user address\");\n        return feedbacks[user].length;\n    }\n\n    // Function to get the first feedback for a user\n    function getFirstFeedback(address user) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {\n        require(user != address(0), \"Invalid user address\");\n        require(feedbacks[user].length > 0, \"No feedback available\");\n\n        Feedback memory fb = feedbacks[user][0];\n        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);\n    }\n\n    // Function to get the latest feedback for a user\n    function getLatestFeedback(address user) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {\n        require(user != address(0), \"Invalid user address\");\n        uint256 feedbackCount = feedbacks[user].length;\n        require(feedbackCount > 0, \"No feedback available\");\n\n        Feedback memory fb = feedbacks[user][feedbackCount - 1];\n        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);\n    }\n\n    // Function to get feedback by index for a user\n    function getFeedback(address user, uint256 index) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {\n        require(user != address(0), \"Invalid user address\");\n        require(index < feedbacks[user].length, \"Index out of bounds\");\n\n        Feedback memory fb = feedbacks[user][index];\n        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);\n    }\n\n    // Function to get average rating for a user\n    function getAverageRating(address user) public view returns (uint256) {\n        require(user != address(0), \"Invalid user address\");\n\n        if (ratingCount[user] == 0) {\n            return 0;\n        }\n        return ratingSum[user] * 100 / ratingCount[user];\n    }\n\n    // Function to get all feedback for a user\n    function getAllFeedback(address user) public view returns (Feedback[] memory) {\n        require(user != address(0), \"Invalid user address\");\n        return feedbacks[user];\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

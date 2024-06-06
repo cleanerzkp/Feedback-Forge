@@ -5,6 +5,260 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
+  8453: {
+    FeedbackForge: {
+      address: "0xd905Fe646A553a1F81DF0fc12fC9D988e3aFeAA8",
+      abi: [
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint8",
+              name: "rating",
+              type: "uint8",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "comment",
+              type: "string",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "feedbackProvider",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+          ],
+          name: "FeedbackProvided",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getAllFeedback",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint8",
+                  name: "rating",
+                  type: "uint8",
+                },
+                {
+                  internalType: "string",
+                  name: "comment",
+                  type: "string",
+                },
+                {
+                  internalType: "address",
+                  name: "feedbackProvider",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "timestamp",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FeedbackForge.Feedback[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getAverageRating",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "index",
+              type: "uint256",
+            },
+          ],
+          name: "getFeedback",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "rating",
+              type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "comment",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "feedbackProvider",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getFeedbackCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getFirstFeedback",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "rating",
+              type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "comment",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "feedbackProvider",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getLatestFeedback",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "rating",
+              type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "comment",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "feedbackProvider",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              internalType: "uint8",
+              name: "rating",
+              type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "comment",
+              type: "string",
+            },
+          ],
+          name: "provideFeedback",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
   31337: {
     FeedbackForge: {
       address: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",

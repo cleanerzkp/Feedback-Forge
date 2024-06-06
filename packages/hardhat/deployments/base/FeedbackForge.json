@@ -1,0 +1,392 @@
+{
+  "address": "0xd905Fe646A553a1F81DF0fc12fC9D988e3aFeAA8",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "rating",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "comment",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "feedbackProvider",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "FeedbackProvided",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getAllFeedback",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "rating",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "comment",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "feedbackProvider",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct FeedbackForge.Feedback[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getAverageRating",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getFeedback",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "rating",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "comment",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "feedbackProvider",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getFeedbackCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getFirstFeedback",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "rating",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "comment",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "feedbackProvider",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getLatestFeedback",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "rating",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "comment",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "feedbackProvider",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint8",
+          "name": "rating",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "comment",
+          "type": "string"
+        }
+      ],
+      "name": "provideFeedback",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xe95c18827cb69c96b26e76aba1172e0169341391c6957dd3cf2142e2afa45297",
+  "receipt": {
+    "to": null,
+    "from": "0x872f1fFdeEe35a6074658B4FB185E2582Db7896A",
+    "contractAddress": "0xd905Fe646A553a1F81DF0fc12fC9D988e3aFeAA8",
+    "transactionIndex": 47,
+    "gasUsed": "836074",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x82be96e7edb4d7c319f20d2b1e14fb9e4c3a1f78b391c8c93e8cb27358d2b35b",
+    "transactionHash": "0xe95c18827cb69c96b26e76aba1172e0169341391c6957dd3cf2142e2afa45297",
+    "logs": [],
+    "blockNumber": 15457628,
+    "cumulativeGasUsed": "8303510",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "1fc944763e69a707ff5bf8ce0ddb514c",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"comment\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"feedbackProvider\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"FeedbackProvided\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getAllFeedback\",\"outputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"comment\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"feedbackProvider\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"internalType\":\"struct FeedbackForge.Feedback[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getAverageRating\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getFeedback\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"comment\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"feedbackProvider\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getFeedbackCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getFirstFeedback\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"comment\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"feedbackProvider\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getLatestFeedback\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"comment\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"feedbackProvider\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"comment\",\"type\":\"string\"}],\"name\":\"provideFeedback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/FeedbackForge.sol\":\"FeedbackForge\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/FeedbackForge.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\ncontract FeedbackForge {\\n    struct Feedback {\\n        uint8 rating;\\n        string comment;\\n        address feedbackProvider;\\n        uint256 timestamp;\\n    }\\n\\n    // Mapping to store feedbacks for each user\\n    mapping(address => Feedback[]) private feedbacks;\\n\\n    // Mapping to store aggregate ratings\\n    mapping(address => uint256) private ratingSum;\\n    mapping(address => uint256) private ratingCount;\\n\\n    // Event to emit when feedback is provided\\n    event FeedbackProvided(\\n        address indexed user,\\n        uint8 rating,\\n        string comment,\\n        address indexed feedbackProvider,\\n        uint256 timestamp\\n    );\\n\\n    // Function to provide feedback\\n    function provideFeedback(address user, uint8 rating, string memory comment) public {\\n        require(user != address(0), \\\"Invalid user address\\\");\\n        require(rating >= 0 && rating <= 5, \\\"Rating must be between 0 and 5\\\");\\n\\n        feedbacks[user].push(Feedback({\\n            rating: rating,\\n            comment: comment,\\n            feedbackProvider: msg.sender,\\n            timestamp: block.timestamp\\n        }));\\n        ratingSum[user] += rating;\\n        ratingCount[user] += 1;\\n\\n        emit FeedbackProvided(user, rating, comment, msg.sender, block.timestamp);\\n    }\\n\\n    // Function to get feedback count for a user\\n    function getFeedbackCount(address user) public view returns (uint256) {\\n        require(user != address(0), \\\"Invalid user address\\\");\\n        return feedbacks[user].length;\\n    }\\n\\n    // Function to get the first feedback for a user\\n    function getFirstFeedback(address user) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {\\n        require(user != address(0), \\\"Invalid user address\\\");\\n        require(feedbacks[user].length > 0, \\\"No feedback available\\\");\\n\\n        Feedback memory fb = feedbacks[user][0];\\n        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);\\n    }\\n\\n    // Function to get the latest feedback for a user\\n    function getLatestFeedback(address user) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {\\n        require(user != address(0), \\\"Invalid user address\\\");\\n        uint256 feedbackCount = feedbacks[user].length;\\n        require(feedbackCount > 0, \\\"No feedback available\\\");\\n\\n        Feedback memory fb = feedbacks[user][feedbackCount - 1];\\n        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);\\n    }\\n\\n    // Function to get feedback by index for a user\\n    function getFeedback(address user, uint256 index) public view returns (uint8 rating, string memory comment, address feedbackProvider, uint256 timestamp) {\\n        require(user != address(0), \\\"Invalid user address\\\");\\n        require(index < feedbacks[user].length, \\\"Index out of bounds\\\");\\n\\n        Feedback memory fb = feedbacks[user][index];\\n        return (fb.rating, fb.comment, fb.feedbackProvider, fb.timestamp);\\n    }\\n\\n    // Function to get average rating for a user\\n    function getAverageRating(address user) public view returns (uint256) {\\n        require(user != address(0), \\\"Invalid user address\\\");\\n\\n        if (ratingCount[user] == 0) {\\n            return 0;\\n        }\\n        return ratingSum[user] * 100 / ratingCount[user];\\n    }\\n\\n    // Function to get all feedback for a user\\n    function getAllFeedback(address user) public view returns (Feedback[] memory) {\\n        require(user != address(0), \\\"Invalid user address\\\");\\n        return feedbacks[user];\\n    }\\n}\\n\",\"keccak256\":\"0x6082d8155b65be5674b9393e6e204a28d103c354b0a4a87e89d73a6e0fc7a49b\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610e28806100206000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c806366a553311161005b57806366a55331146100eb578063c8b67522146100fe578063ca0f0b1114610111578063fa22d3dd1461012657600080fd5b806301ff73e7146100825780630f23920c146100a8578063322e8670146100c8575b600080fd5b610095610090366004610973565b610139565b6040519081526020015b60405180910390f35b6100bb6100b6366004610973565b610186565b60405161009f91906109db565b6100db6100d6366004610a72565b6102e1565b60405161009f9493929190610a9c565b6100db6100f9366004610973565b610493565b61009561010c366004610973565b610550565b61012461011f366004610aea565b6105df565b005b6100db610134366004610973565b6107a8565b60006001600160a01b03821661016a5760405162461bcd60e51b815260040161016190610bc4565b60405180910390fd5b506001600160a01b031660009081526020819052604090205490565b60606001600160a01b0382166101ae5760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b03821660009081526020818152604080832080548251818502810185019093528083529193909284015b828210156102d6576000848152602090819020604080516080810190915260048502909101805460ff168252600181018054929391929184019161022290610bf2565b80601f016020809104026020016040519081016040528092919081815260200182805461024e90610bf2565b801561029b5780601f106102705761010080835404028352916020019161029b565b820191906000526020600020905b81548152906001019060200180831161027e57829003601f168201915b505050918352505060028201546001600160a01b031660208083019190915260039092015460409091015290825260019290920191016101df565b505050509050919050565b6000606081806001600160a01b03861661030d5760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b038616600090815260208190526040902054851061036a5760405162461bcd60e51b8152602060048201526013602482015272496e646578206f7574206f6620626f756e647360681b6044820152606401610161565b6001600160a01b038616600090815260208190526040812080548790811061039457610394610c2c565b60009182526020918290206040805160808101909152600490920201805460ff16825260018101805492939192918401916103ce90610bf2565b80601f01602080910402602001604051908101604052809291908181526020018280546103fa90610bf2565b80156104475780601f1061041c57610100808354040283529160200191610447565b820191906000526020600020905b81548152906001019060200180831161042a57829003601f168201915b505050918352505060028201546001600160a01b031660208083019190915260039092015460409182015282519183015190830151606090930151919a90995091975095509350505050565b6000606081806001600160a01b0385166104bf5760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b0385166000908152602081905260409020548061051d5760405162461bcd60e51b81526020600482015260156024820152744e6f20666565646261636b20617661696c61626c6560581b6044820152606401610161565b6001600160a01b0386166000908152602081905260408120610540600184610c58565b8154811061039457610394610c2c565b60006001600160a01b0382166105785760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b038216600090815260026020526040812054900361059f57506000919050565b6001600160a01b0382166000908152600260209081526040808320546001909252909120546105cf906064610c6b565b6105d99190610c82565b92915050565b6001600160a01b0383166106055760405162461bcd60e51b815260040161016190610bc4565b60058260ff1611156106595760405162461bcd60e51b815260206004820152601e60248201527f526174696e67206d757374206265206265747765656e203020616e64203500006044820152606401610161565b6001600160a01b038316600090815260208181526040808320815160808101835260ff87811682528185018781523394830194909452426060830152825460018082018555938752949095208151600490950201805460ff1916949095169390931784559051919291908201906106d09082610cf3565b506040828101516002830180546001600160a01b0319166001600160a01b0392831617905560609093015160039092019190915590841660009081526001602052908120805460ff85169290610727908490610db3565b90915550506001600160a01b0383166000908152600260205260408120805460019290610755908490610db3565b909155505060405133906001600160a01b038516907fc755c9a7fbf652cb0d0311c2d827537508f92c5d618d723c7083102b3b3b2eaf9061079b90869086904290610dc6565b60405180910390a3505050565b6000606081806001600160a01b0385166107d45760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b0385166000908152602081905260409020546108315760405162461bcd60e51b81526020600482015260156024820152744e6f20666565646261636b20617661696c61626c6560581b6044820152606401610161565b6001600160a01b03851660009081526020819052604081208054829061085957610859610c2c565b60009182526020918290206040805160808101909152600490920201805460ff168252600181018054929391929184019161089390610bf2565b80601f01602080910402602001604051908101604052809291908181526020018280546108bf90610bf2565b801561090c5780601f106108e15761010080835404028352916020019161090c565b820191906000526020600020905b8154815290600101906020018083116108ef57829003601f168201915b505050918352505060028201546001600160a01b0316602080830191909152600390920154604091820152825191830151908301516060909301519199909850919650945092505050565b80356001600160a01b038116811461096e57600080fd5b919050565b60006020828403121561098557600080fd5b61098e82610957565b9392505050565b6000815180845260005b818110156109bb5760208185018101518683018201520161099f565b506000602082860101526020601f19601f83011685010191505092915050565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b83811015610a6457603f198984030185528151608060ff825116855288820151818a870152610a3382870182610995565b838a01516001600160a01b0316878b0152606093840151939096019290925250509386019390860190600101610a02565b509098975050505050505050565b60008060408385031215610a8557600080fd5b610a8e83610957565b946020939093013593505050565b60ff85168152608060208201526000610ab86080830186610995565b6001600160a01b03949094166040830152506060015292915050565b634e487b7160e01b600052604160045260246000fd5b600080600060608486031215610aff57600080fd5b610b0884610957565b9250602084013560ff81168114610b1e57600080fd5b9150604084013567ffffffffffffffff80821115610b3b57600080fd5b818601915086601f830112610b4f57600080fd5b813581811115610b6157610b61610ad4565b604051601f8201601f19908116603f01168101908382118183101715610b8957610b89610ad4565b81604052828152896020848701011115610ba257600080fd5b8260208601602083013760006020848301015280955050505050509250925092565b602080825260149082015273496e76616c69642075736572206164647265737360601b604082015260600190565b600181811c90821680610c0657607f821691505b602082108103610c2657634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b818103818111156105d9576105d9610c42565b80820281158282048414176105d9576105d9610c42565b600082610c9f57634e487b7160e01b600052601260045260246000fd5b500490565b601f821115610cee57600081815260208120601f850160051c81016020861015610ccb5750805b601f850160051c820191505b81811015610cea57828155600101610cd7565b5050505b505050565b815167ffffffffffffffff811115610d0d57610d0d610ad4565b610d2181610d1b8454610bf2565b84610ca4565b602080601f831160018114610d565760008415610d3e5750858301515b600019600386901b1c1916600185901b178555610cea565b600085815260208120601f198616915b82811015610d8557888601518255948401946001909101908401610d66565b5085821015610da35787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b808201808211156105d9576105d9610c42565b60ff84168152606060208201526000610de26060830185610995565b905082604083015294935050505056fea2646970667358221220018c3f3baa741236bcba562ea8fe7741542e5adda44ca332ea27511eb2d60f1964736f6c63430008110033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c806366a553311161005b57806366a55331146100eb578063c8b67522146100fe578063ca0f0b1114610111578063fa22d3dd1461012657600080fd5b806301ff73e7146100825780630f23920c146100a8578063322e8670146100c8575b600080fd5b610095610090366004610973565b610139565b6040519081526020015b60405180910390f35b6100bb6100b6366004610973565b610186565b60405161009f91906109db565b6100db6100d6366004610a72565b6102e1565b60405161009f9493929190610a9c565b6100db6100f9366004610973565b610493565b61009561010c366004610973565b610550565b61012461011f366004610aea565b6105df565b005b6100db610134366004610973565b6107a8565b60006001600160a01b03821661016a5760405162461bcd60e51b815260040161016190610bc4565b60405180910390fd5b506001600160a01b031660009081526020819052604090205490565b60606001600160a01b0382166101ae5760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b03821660009081526020818152604080832080548251818502810185019093528083529193909284015b828210156102d6576000848152602090819020604080516080810190915260048502909101805460ff168252600181018054929391929184019161022290610bf2565b80601f016020809104026020016040519081016040528092919081815260200182805461024e90610bf2565b801561029b5780601f106102705761010080835404028352916020019161029b565b820191906000526020600020905b81548152906001019060200180831161027e57829003601f168201915b505050918352505060028201546001600160a01b031660208083019190915260039092015460409091015290825260019290920191016101df565b505050509050919050565b6000606081806001600160a01b03861661030d5760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b038616600090815260208190526040902054851061036a5760405162461bcd60e51b8152602060048201526013602482015272496e646578206f7574206f6620626f756e647360681b6044820152606401610161565b6001600160a01b038616600090815260208190526040812080548790811061039457610394610c2c565b60009182526020918290206040805160808101909152600490920201805460ff16825260018101805492939192918401916103ce90610bf2565b80601f01602080910402602001604051908101604052809291908181526020018280546103fa90610bf2565b80156104475780601f1061041c57610100808354040283529160200191610447565b820191906000526020600020905b81548152906001019060200180831161042a57829003601f168201915b505050918352505060028201546001600160a01b031660208083019190915260039092015460409182015282519183015190830151606090930151919a90995091975095509350505050565b6000606081806001600160a01b0385166104bf5760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b0385166000908152602081905260409020548061051d5760405162461bcd60e51b81526020600482015260156024820152744e6f20666565646261636b20617661696c61626c6560581b6044820152606401610161565b6001600160a01b0386166000908152602081905260408120610540600184610c58565b8154811061039457610394610c2c565b60006001600160a01b0382166105785760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b038216600090815260026020526040812054900361059f57506000919050565b6001600160a01b0382166000908152600260209081526040808320546001909252909120546105cf906064610c6b565b6105d99190610c82565b92915050565b6001600160a01b0383166106055760405162461bcd60e51b815260040161016190610bc4565b60058260ff1611156106595760405162461bcd60e51b815260206004820152601e60248201527f526174696e67206d757374206265206265747765656e203020616e64203500006044820152606401610161565b6001600160a01b038316600090815260208181526040808320815160808101835260ff87811682528185018781523394830194909452426060830152825460018082018555938752949095208151600490950201805460ff1916949095169390931784559051919291908201906106d09082610cf3565b506040828101516002830180546001600160a01b0319166001600160a01b0392831617905560609093015160039092019190915590841660009081526001602052908120805460ff85169290610727908490610db3565b90915550506001600160a01b0383166000908152600260205260408120805460019290610755908490610db3565b909155505060405133906001600160a01b038516907fc755c9a7fbf652cb0d0311c2d827537508f92c5d618d723c7083102b3b3b2eaf9061079b90869086904290610dc6565b60405180910390a3505050565b6000606081806001600160a01b0385166107d45760405162461bcd60e51b815260040161016190610bc4565b6001600160a01b0385166000908152602081905260409020546108315760405162461bcd60e51b81526020600482015260156024820152744e6f20666565646261636b20617661696c61626c6560581b6044820152606401610161565b6001600160a01b03851660009081526020819052604081208054829061085957610859610c2c565b60009182526020918290206040805160808101909152600490920201805460ff168252600181018054929391929184019161089390610bf2565b80601f01602080910402602001604051908101604052809291908181526020018280546108bf90610bf2565b801561090c5780601f106108e15761010080835404028352916020019161090c565b820191906000526020600020905b8154815290600101906020018083116108ef57829003601f168201915b505050918352505060028201546001600160a01b0316602080830191909152600390920154604091820152825191830151908301516060909301519199909850919650945092505050565b80356001600160a01b038116811461096e57600080fd5b919050565b60006020828403121561098557600080fd5b61098e82610957565b9392505050565b6000815180845260005b818110156109bb5760208185018101518683018201520161099f565b506000602082860101526020601f19601f83011685010191505092915050565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b83811015610a6457603f198984030185528151608060ff825116855288820151818a870152610a3382870182610995565b838a01516001600160a01b0316878b0152606093840151939096019290925250509386019390860190600101610a02565b509098975050505050505050565b60008060408385031215610a8557600080fd5b610a8e83610957565b946020939093013593505050565b60ff85168152608060208201526000610ab86080830186610995565b6001600160a01b03949094166040830152506060015292915050565b634e487b7160e01b600052604160045260246000fd5b600080600060608486031215610aff57600080fd5b610b0884610957565b9250602084013560ff81168114610b1e57600080fd5b9150604084013567ffffffffffffffff80821115610b3b57600080fd5b818601915086601f830112610b4f57600080fd5b813581811115610b6157610b61610ad4565b604051601f8201601f19908116603f01168101908382118183101715610b8957610b89610ad4565b81604052828152896020848701011115610ba257600080fd5b8260208601602083013760006020848301015280955050505050509250925092565b602080825260149082015273496e76616c69642075736572206164647265737360601b604082015260600190565b600181811c90821680610c0657607f821691505b602082108103610c2657634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b818103818111156105d9576105d9610c42565b80820281158282048414176105d9576105d9610c42565b600082610c9f57634e487b7160e01b600052601260045260246000fd5b500490565b601f821115610cee57600081815260208120601f850160051c81016020861015610ccb5750805b601f850160051c820191505b81811015610cea57828155600101610cd7565b5050505b505050565b815167ffffffffffffffff811115610d0d57610d0d610ad4565b610d2181610d1b8454610bf2565b84610ca4565b602080601f831160018114610d565760008415610d3e5750858301515b600019600386901b1c1916600185901b178555610cea565b600085815260208120601f198616915b82811015610d8557888601518255948401946001909101908401610d66565b5085821015610da35787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b808201808211156105d9576105d9610c42565b60ff84168152606060208201526000610de26060830185610995565b905082604083015294935050505056fea2646970667358221220018c3f3baa741236bcba562ea8fe7741542e5adda44ca332ea27511eb2d60f1964736f6c63430008110033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 16,
+        "contract": "contracts/FeedbackForge.sol:FeedbackForge",
+        "label": "feedbacks",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_array(t_struct(Feedback)10_storage)dyn_storage)"
+      },
+      {
+        "astId": 20,
+        "contract": "contracts/FeedbackForge.sol:FeedbackForge",
+        "label": "ratingSum",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_uint256)"
+      },
+      {
+        "astId": 24,
+        "contract": "contracts/FeedbackForge.sol:FeedbackForge",
+        "label": "ratingCount",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_uint256)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_struct(Feedback)10_storage)dyn_storage": {
+        "base": "t_struct(Feedback)10_storage",
+        "encoding": "dynamic_array",
+        "label": "struct FeedbackForge.Feedback[]",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_address,t_array(t_struct(Feedback)10_storage)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct FeedbackForge.Feedback[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_struct(Feedback)10_storage)dyn_storage"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Feedback)10_storage": {
+        "encoding": "inplace",
+        "label": "struct FeedbackForge.Feedback",
+        "members": [
+          {
+            "astId": 3,
+            "contract": "contracts/FeedbackForge.sol:FeedbackForge",
+            "label": "rating",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8"
+          },
+          {
+            "astId": 5,
+            "contract": "contracts/FeedbackForge.sol:FeedbackForge",
+            "label": "comment",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 7,
+            "contract": "contracts/FeedbackForge.sol:FeedbackForge",
+            "label": "feedbackProvider",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_address"
+          },
+          {
+            "astId": 9,
+            "contract": "contracts/FeedbackForge.sol:FeedbackForge",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      },
+      "t_uint8": {
+        "encoding": "inplace",
+        "label": "uint8",
+        "numberOfBytes": "1"
+      }
+    }
+  }
+}
