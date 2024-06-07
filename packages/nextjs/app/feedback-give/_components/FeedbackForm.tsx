@@ -27,6 +27,8 @@ const FeedbackComponent: React.FC = () => {
         functionName: "provideFeedback",
         args: [user, rating, comment],
       });
+      setRating(0);
+      setComment("");
     } catch (e) {
       console.error("Error providing feedback:", e);
     }
