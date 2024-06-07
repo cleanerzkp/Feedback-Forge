@@ -3,13 +3,12 @@
 import React, { useState } from "react";
 import FeedbackLeaderboard from "./_components/FeedbackLeaderboard";
 
-const LeaderboardPage = () => {
+const LeaderboardPage: React.FC = () => {
   const [sortBy, setSortBy] = useState<"rating" | "address" | "date">("rating");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target;
-    const [newSortBy, newSortOrder] = value.split("-") as ["rating" | "address" | "date", "asc" | "desc"];
+    const [newSortBy, newSortOrder] = e.target.value.split("-") as ["rating" | "address" | "date", "asc" | "desc"];
     setSortBy(newSortBy);
     setSortOrder(newSortOrder);
   };

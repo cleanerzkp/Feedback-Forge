@@ -18,31 +18,27 @@ interface FeedbackLeaderboardProps {
 const FeedbackLeaderboard: React.FC<FeedbackLeaderboardProps> = ({ sortBy, sortOrder }) => {
   const [feedbackEntries, setFeedbackEntries] = useState<FeedbackEntry[]>([]);
 
-  const { data: getAllFeedback } = useScaffoldReadContract({
+  const { data: getAllFeedback, error } = useScaffoldReadContract({
     contractName: "FeedbackForge",
     functionName: "getAllFeedback",
-    args: [undefined], // or args: [] as const
+    args: [undefined], // Ensure the correct arguments are passed
   });
 
   useEffect(() => {
-    const fetchFeedbackEntries = async () => {
-      if (getAllFeedback) {
-        const entries: FeedbackEntry[] = await Promise.all(
-          getAllFeedback.map(async feedback => {
-            const { rating, feedbackProvider, timestamp } = feedback;
-            return {
-              address: feedbackProvider,
-              rating,
-              timestamp: Number(timestamp.toString()),
-            };
-          }),
-        );
-        setFeedbackEntries(entries);
-      }
-    };
-
-    fetchFeedbackEntries();
-  }, [getAllFeedback]);
+    if (error) {
+      console.error("Error fetching feedback data:", error);
+      return;
+    }
+    if (getAllFeedback) {
+      console.log("Feedback data retrieved:", getAllFeedback); // Log retrieved data for debugging
+      const entries = getAllFeedback.map((feedback: any) => ({
+        address: feedback.feedbackProvider,
+        rating: feedback.rating,
+        timestamp: Number(feedback.timestamp),
+      }));
+      setFeedbackEntries(entries.slice(0, 10)); // Display the latest 10 feedback entries initially
+    }
+  }, [getAllFeedback, error]);
 
   const sortFeedbackEntries = (entries: FeedbackEntry[]) => {
     return entries.sort((a, b) => {
@@ -54,7 +50,6 @@ const FeedbackLeaderboard: React.FC<FeedbackLeaderboardProps> = ({ sortBy, sortO
       } else if (sortBy === "date") {
         comparison = a.timestamp - b.timestamp;
       }
-
       return sortOrder === "asc" ? comparison : -comparison;
     });
   };
