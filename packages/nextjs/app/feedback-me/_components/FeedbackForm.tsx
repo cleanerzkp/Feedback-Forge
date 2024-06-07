@@ -1,84 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useScaffoldEventHistory, useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import React from "react";
+import { useFeedback } from "~~/components/feedback/FeedbackContext";
 
-interface Feedback {
-  rating: number;
-  comment: string;
-  feedbackProvider: string;
-  timestamp: bigint;
-}
-
-const FeedbackComponent: React.FC = () => {
-  const [user, setUser] = useState("");
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
-  const [feedbackData, setFeedbackData] = useState<Feedback[]>([]);
-
-  const { data: feedbackCount } = useScaffoldReadContract({
-    contractName: "FeedbackForge",
-    functionName: "getFeedbackCount",
-    args: [user],
-  });
-
-  const { data: averageRating } = useScaffoldReadContract({
-    contractName: "FeedbackForge",
-    functionName: "getAverageRating",
-    args: [user],
-  });
-
-  const { writeContractAsync: provideFeedback } = useScaffoldWriteContract("FeedbackForge");
-
-  const handleProvideFeedback = async () => {
-    try {
-      await provideFeedback({
-        functionName: "provideFeedback",
-        args: [user, rating, comment],
-      });
-      setRating(0);
-      setComment("");
-    } catch (e) {
-      console.error("Error providing feedback:", e);
-    }
-  };
-
-  const { data: feedbackEvents } = useScaffoldEventHistory({
-    contractName: "FeedbackForge",
-    eventName: "FeedbackProvided",
-    watch: true,
-    fromBlock: 0n,
-  });
-
-  // Fetch feedback data
-  const { data: allFeedback } = useScaffoldReadContract<"FeedbackForge", "getAllFeedback">({
-    contractName: "FeedbackForge",
-    functionName: "getAllFeedback",
-    args: [undefined],
-  });
-
-  useEffect(() => {
-    if (allFeedback) {
-      setFeedbackData([...allFeedback]);
-    }
-  }, [allFeedback]);
+const MyFeedback: React.FC = () => {
+  const { user, setUser, feedbackCount, averageRating, feedbackEvents, feedbackData } = useFeedback();
 
   return (
-    <div className="feedback-component">
-      <h2>Provide Feedback</h2>
+    <div className="my-feedback">
+      <h2>My Feedback</h2>
       <input type="text" placeholder="User Address" value={user} onChange={e => setUser(e.target.value)} />
-      <input
-        type="number"
-        placeholder="Rating"
-        value={rating}
-        onChange={e => setRating(Number(e.target.value))}
-        min="0"
-        max="5"
-      />
-      <textarea placeholder="Comment" value={comment} onChange={e => setComment(e.target.value)}></textarea>
-      <button onClick={handleProvideFeedback}>Submit Feedback</button>
+      <button onClick={() => setUser(user)}>View My Feedback</button>
 
-      <h2>User Feedback</h2>
       <p>Feedback Count: {feedbackCount}</p>
       <p>Average Rating: {averageRating}</p>
 
@@ -107,4 +40,4 @@ const FeedbackComponent: React.FC = () => {
   );
 };
 
-export default FeedbackComponent;
+export default MyFeedback;
