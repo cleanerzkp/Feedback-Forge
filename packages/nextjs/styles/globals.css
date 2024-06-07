@@ -24,9 +24,40 @@ p {
 }
 
 .btn {
-  @apply shadow-md;
+  @apply shadow-md rounded-full;
 }
 
 .btn.btn-ghost {
   @apply shadow-none;
+}
+
+.feedback-component,
+.my-feedback {
+  @apply max-w-xl mx-auto p-6 bg-base-100 rounded-2xl shadow-center;
+}
+
+.feedback-component h2,
+.my-feedback h2 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.feedback-component input,
+.feedback-component textarea,
+.my-feedback input {
+  @apply w-full p-3 mb-4 border border-base-300 rounded-lg;
+}
+
+.feedback-component button,
+.my-feedback button {
+  @apply btn btn-primary w-full mt-2;
+}
+
+.feedback-component ul,
+.my-feedback ul {
+  @apply list-disc pl-5;
+}
+
+.feedback-component li,
+.my-feedback li {
+  @apply mb-2;
 }
