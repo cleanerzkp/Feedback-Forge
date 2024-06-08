@@ -1,6 +1,7 @@
 "use client";
 
 import React, { ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
+import { Address, AddressInput, InputBase, IntegerInput } from "~~/components/scaffold-eth";
 import { useScaffoldEventHistory, useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 interface Feedback {
@@ -29,7 +30,7 @@ const FeedbackContext = createContext<FeedbackContextType | undefined>(undefined
 
 export const FeedbackProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState("");
   const [feedbackData, setFeedbackData] = useState<Feedback[]>([]);
   const [feedbackEvents, setFeedbackEvents] = useState<any[]>([]);
@@ -121,3 +122,55 @@ export const useFeedback = () => {
   }
   return context;
 };
+
+// Example Component Using the Context
+const FeedbackComponent: React.FC = () => {
+  const {
+    user,
+    setUser,
+    rating,
+    setRating,
+    comment,
+    setComment,
+    feedbackCount,
+    averageRating,
+    feedbackData,
+    provideFeedback,
+  } = useFeedback();
+
+  const handleRatingChange = (newRating: string | bigint) => {
+    setRating(typeof newRating === "bigint" ? Number(newRating) : parseInt(newRating));
+  };
+
+  const handleProvideFeedback = () => {
+    provideFeedback(user, rating, comment);
+  };
+
+  return (
+    <div>
+      <h1>Feedback Forge</h1>
+      <AddressInput value={user} onChange={setUser} placeholder="Input user address" />
+      <IntegerInput value={rating.toString()} onChange={handleRatingChange} placeholder="Rating (0-5)" />
+      <InputBase value={comment} onChange={setComment} placeholder="Comment" />
+
+      <button onClick={handleProvideFeedback}>Submit Feedback</button>
+
+      {feedbackCount !== undefined && <p>Total Feedbacks: {feedbackCount}</p>}
+      {averageRating !== undefined && <p>Average Rating: {averageRating / 100}</p>}
+
+      <div>
+        <h2>Feedback List</h2>
+        {feedbackData.map((feedback, index) => (
+          <div key={index}>
+            <p>Rating: {feedback.rating}</p>
+            <p>Comment: {feedback.comment}</p>
+            <Address address={feedback.feedbackProvider} format="short" />
+            <p>Timestamp: {new Date(Number(feedback.timestamp) * 1000).toLocaleString()}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FeedbackComponent;
