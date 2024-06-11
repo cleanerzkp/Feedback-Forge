@@ -1,52 +1,97 @@
 "use client";
 
-import React from "react";
-import { useWriteContract } from "wagmi";
+import React, { useEffect, useState } from "react";
+import { StarIcon } from "@heroicons/react/24/solid";
 import { useFeedback } from "~~/components/feedback/FeedbackContext";
-import DeployedContracts from "~~/contracts/deployedContracts";
-import { useTransactor } from "~~/hooks/scaffold-eth";
+import { Address, AddressInput } from "~~/components/scaffold-eth";
+import Slider from "~~/components/slider/Slider";
 
 const GiveFeedback: React.FC = () => {
-  const { user, setUser, rating, setRating, comment, setComment } = useFeedback();
+  const { user, setUser, rating, setRating, comment, setComment, provideFeedback, loadFeedbackData, feedbackData } =
+    useFeedback();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const { writeContractAsync, isPending } = useWriteContract();
-
-  const writeContractAsyncWithParams = () =>
-    writeContractAsync({
-      address: DeployedContracts[31337].FeedbackForge.address,
-      abi: DeployedContracts[31337].FeedbackForge.abi,
-      functionName: "provideFeedback",
-      args: [user, rating, comment],
-    });
-
-  const writeTx = useTransactor();
+  useEffect(() => {
+    loadFeedbackData();
+  }, [loadFeedbackData]);
 
   const handleProvideFeedback = async () => {
+    if (!user) {
+      setError("Please enter your address.");
+      return;
+    }
+    if (rating < 1 || rating > 5) {
+      setError("Rating must be between 1 and 5.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
     try {
-      await writeTx(writeContractAsyncWithParams, { blockConfirmations: 1 });
+      await provideFeedback(user, rating, comment);
       setRating(0);
       setComment("");
+      loadFeedbackData();
     } catch (e) {
-      console.log("Unexpected error in writeTx", e);
+      setError("An error occurred while providing feedback.");
+    } finally {
+      setLoading(false);
     }
   };
 
+  const latestFeedback = feedbackData.length > 0 ? feedbackData[feedbackData.length - 1] : null;
+
   return (
-    <div className="give-feedback">
-      <h2>Provide Feedback</h2>
-      <input type="text" placeholder="User Address" value={user} onChange={e => setUser(e.target.value)} />
-      <input
-        type="number"
-        placeholder="Rating"
-        value={rating}
-        onChange={e => setRating(Number(e.target.value))}
-        min="0"
-        max="5"
-      />
-      <textarea placeholder="Comment" value={comment} onChange={e => setComment(e.target.value)}></textarea>
-      <button onClick={handleProvideFeedback} disabled={isPending}>
-        {isPending ? <span className="loading loading-spinner loading-sm"></span> : "Submit Feedback"}
-      </button>
+    <div className="feedback-component max-w-xl mx-auto p-6 bg-base-100 rounded-2xl shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-center">Provide Feedback</h2>
+      <div className="flex flex-col items-center mb-6">
+        <div className="w-full mb-4">
+          <AddressInput value={user} onChange={setUser} placeholder="Your Address" />
+        </div>
+        <div className="w-full mb-4">
+          <Slider value={rating} onChange={setRating} />
+        </div>
+        <div className="w-full mb-4">
+          <textarea
+            value={comment}
+            onChange={e => setComment(e.target.value)}
+            placeholder="Comment (optional)"
+            className="textarea textarea-bordered w-full"
+            rows={3}
+          />
+        </div>
+        <button onClick={handleProvideFeedback} disabled={loading} className="btn btn-primary w-full">
+          {loading ? <span className="loading loading-spinner loading-sm"></span> : "Submit Feedback"}
+        </button>
+        {error && <p className="text-error mt-4">{error}</p>}
+      </div>
+
+      <h2 className="text-2xl font-bold mb-4">Latest Feedback</h2>
+      {latestFeedback ? (
+        <div className="p-4 bg-base-200 rounded-lg">
+          <div className="flex items-center mb-2">
+            <p className="mr-2 font-semibold">Rating:</p>
+            <div className="rating flex">
+              {[...Array(latestFeedback.rating)].map((_, index) => (
+                <StarIcon key={index} className="h-6 w-6 text-primary" />
+              ))}
+            </div>
+          </div>
+          <p className="mb-2">
+            <span className="font-semibold">Comment:</span> {latestFeedback.comment || "No comment provided."}
+          </p>
+          <div className="flex items-center mb-2">
+            <p className="mr-2 font-semibold">Feedback Provider:</p>
+            <Address address={latestFeedback.feedbackProvider} format="short" />
+          </div>
+          <p className="font-semibold">
+            Timestamp: {new Date(Number(latestFeedback.timestamp) * 1000).toLocaleString()}
+          </p>
+        </div>
+      ) : (
+        <p>No feedback found.</p>
+      )}
     </div>
   );
 };

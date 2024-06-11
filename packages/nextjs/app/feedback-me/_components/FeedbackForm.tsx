@@ -47,7 +47,8 @@ const MyFeedback: React.FC = () => {
         </button>
       </div>
 
-      {!user && <p className="text-red-500">Please enter a user address to view feedback.</p>}
+      {!user && <p>Please enter a user address to view feedback.</p>}
+
       {loading && <p>Loading feedback...</p>}
       {!loading && error && <p className="text-red-500">{error}</p>}
 
@@ -66,7 +67,7 @@ const MyFeedback: React.FC = () => {
               <li key={index} className="mb-2">
                 <div className="flex items-center">
                   <Address address={event.args.feedbackProvider} format="short" />
-                  <span>gave feedback to</span>
+                  <span className="mx-2">gave feedback to</span>
                   <Address address={event.args.user} format="short" />
                 </div>
                 <div>

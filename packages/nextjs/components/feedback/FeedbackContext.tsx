@@ -24,6 +24,8 @@ interface FeedbackContextType {
   feedbackEvents: any[];
   provideFeedback: (user: string, rating: number, comment: string) => Promise<void>;
   loadFeedbackData: () => void;
+  loading: boolean;
+  error?: string;
 }
 
 const FeedbackContext = createContext<FeedbackContextType | undefined>(undefined);
@@ -34,6 +36,8 @@ export const FeedbackProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [comment, setComment] = useState("");
   const [feedbackData, setFeedbackData] = useState<Feedback[]>([]);
   const [feedbackEvents, setFeedbackEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | undefined>(undefined);
 
   const { data: feedbackCountBigInt } = useScaffoldReadContract({
     contractName: "FeedbackForge",
@@ -54,6 +58,8 @@ export const FeedbackProvider: React.FC<{ children: ReactNode }> = ({ children }
   const { writeContractAsync: provideFeedbackContract } = useScaffoldWriteContract("FeedbackForge");
 
   const provideFeedback = async (user: string, rating: number, comment: string) => {
+    setLoading(true);
+    setError(undefined);
     try {
       await provideFeedbackContract({
         functionName: "provideFeedback",
@@ -64,6 +70,9 @@ export const FeedbackProvider: React.FC<{ children: ReactNode }> = ({ children }
       loadFeedbackData();
     } catch (e) {
       console.error("Error providing feedback:", e);
+      setError("Failed to provide feedback. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -108,6 +117,8 @@ export const FeedbackProvider: React.FC<{ children: ReactNode }> = ({ children }
         feedbackEvents,
         provideFeedback,
         loadFeedbackData,
+        loading,
+        error,
       }}
     >
       {children}
@@ -136,6 +147,8 @@ const FeedbackComponent: React.FC = () => {
     averageRating,
     feedbackData,
     provideFeedback,
+    loading,
+    error,
   } = useFeedback();
 
   const handleRatingChange = (newRating: string | bigint) => {
@@ -143,7 +156,11 @@ const FeedbackComponent: React.FC = () => {
   };
 
   const handleProvideFeedback = () => {
-    provideFeedback(user, rating, comment);
+    if (user && rating >= 0 && rating <= 5 && comment) {
+      provideFeedback(user, rating, comment);
+    } else {
+      alert("Please provide a valid user address, rating (0-5), and comment.");
+    }
   };
 
   return (
@@ -153,21 +170,28 @@ const FeedbackComponent: React.FC = () => {
       <IntegerInput value={rating.toString()} onChange={handleRatingChange} placeholder="Rating (0-5)" />
       <InputBase value={comment} onChange={setComment} placeholder="Comment" />
 
-      <button onClick={handleProvideFeedback}>Submit Feedback</button>
+      <button onClick={handleProvideFeedback} disabled={loading}>
+        {loading ? "Submitting..." : "Submit Feedback"}
+      </button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       {feedbackCount !== undefined && <p>Total Feedbacks: {feedbackCount}</p>}
       {averageRating !== undefined && <p>Average Rating: {averageRating / 100}</p>}
 
       <div>
         <h2>Feedback List</h2>
-        {feedbackData.map((feedback, index) => (
-          <div key={index}>
-            <p>Rating: {feedback.rating}</p>
-            <p>Comment: {feedback.comment}</p>
-            <Address address={feedback.feedbackProvider} format="short" />
-            <p>Timestamp: {new Date(Number(feedback.timestamp) * 1000).toLocaleString()}</p>
-          </div>
-        ))}
+        {feedbackData.length > 0 ? (
+          feedbackData.map((feedback, index) => (
+            <div key={index}>
+              <p>Rating: {feedback.rating}</p>
+              <p>Comment: {feedback.comment}</p>
+              <Address address={feedback.feedbackProvider} format="short" />
+              <p>Timestamp: {new Date(Number(feedback.timestamp) * 1000).toLocaleString()}</p>
+            </div>
+          ))
+        ) : (
+          <p>No feedback available.</p>
+        )}
       </div>
     </div>
   );
